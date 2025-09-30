@@ -1,0 +1,185 @@
+{
+    "personal": {
+      "name": "Vicente Rivas Monferrer",
+      "title": "Backend Developer, Software Developer, Scrum Master",
+      "tagline": "Grado en Tecnologías Interactivas, UPV",
+      "bio": "Soy un joven estudiante de último año que me apasiona el mundo de las tecnologías software. Me adapto a cualquier entorno de desarrollo y soy capaz de sacar la mejor versión de mi colaborando y liderando un equipo de trabajo.",
+      "location": "Bétera, Valencia, España",
+      "contact": {
+        "email": "vicenterivasmonferrer12@gmail.com",
+        "phone": "+34 601037577",
+        "linkedin": "https://www.linkedin.com/in/vicente-rivas-monferrer",
+        "github": "https://github.com/vjrivmon"
+      },
+      "avatar": "https://github.com/vjrivmon.png"
+    },
+    
+    "projects": [
+      {
+        "id": "aidguide",
+        "name": "AidGuide",
+        "type": "Robótica",
+        "role": "Scrum Master",
+        "period": "Enero 2025 - Actualidad",
+        "description": "Asistente robótico para personas con movilidad reducida usando TurtleBot3. Guía robótica para personas con discapacidad visual usando tecnologías avanzadas, IA y visión en tiempo real.",
+        "technologies": ["Linux", "Python", "ROS2", "Raspberry Pi", "Gazebo", "AI"],
+        "github": "https://github.com/vjrivmon/aidguide_04",
+        "featured": true,
+        "category": "ai",
+        "impact": "Proyecto para crear un entorno más seguro e inclusivo",
+        "status": "active",
+        "stars": 3
+      },
+      {
+        "id": "vimyp",
+        "name": "VIMYP",
+        "type": "Medioambiente",
+        "role": "Team Leader",
+        "period": "Septiembre 2024 - Enero 2025",
+        "description": "APP/WEB de un mapa interactivo sobre la calidad del aire en tu zona",
+        "technologies": ["Android", "Arduino", "Web", "SQL", "IoT"],
+        "featured": true,
+        "category": "fullstack",
+        "status": "completed"
+      },
+      {
+        "id": "poligames",
+        "name": "PoliGames",
+        "type": "Videojuegos",
+        "role": "Team Leader",
+        "period": "Febrero 2024 - Junio 2024",
+        "description": "Videojuego en 3D con modelado de escenario y personajes",
+        "technologies": ["Unity", "3DS Max", "Blender", "C#", "Substance Painter"],
+        "featured": true,
+        "category": "gamedev",
+        "status": "completed"
+      },
+      {
+        "id": "ecocity",
+        "name": "ECOCITY",
+        "type": "Internet de las Cosas",
+        "role": "Backend Programmer",
+        "period": "Septiembre 2023 - Enero 2024",
+        "description": "Farola inteligente con sensores junto a una app para monitorear datos",
+        "technologies": ["Android", "Java", "Arduino", "Firebase", "Raspberry Pi", "C++", "IoT"],
+        "github": "https://github.com/vjrivmon/IoT_Farola_",
+        "featured": false,
+        "category": "iot",
+        "status": "completed"
+      },
+      {
+        "id": "polihuerto-web",
+        "name": "PoliHuerto (Web)",
+        "type": "Diseño y Programación Web",
+        "role": "Backend Programmer",
+        "period": "Enero 2023 - Junio 2023",
+        "description": "Web para la monitorización de un huerto hidropónico",
+        "technologies": ["HTML", "CSS", "JavaScript", "SQL", "PHP"],
+        "featured": false,
+        "category": "web",
+        "status": "completed"
+      },
+      {
+        "id": "polihuerto-cdio",
+        "name": "PoliHuerto (CDIO)",
+        "type": "Proyecto CDIO",
+        "role": "Team Leader",
+        "period": "Septiembre 2022 - Enero 2023",
+        "description": "Huerto hidropónico utilizando sensores programados con microcontrolador",
+        "technologies": ["Arduino", "C++", "IoT", "Sensors"],
+        "featured": false,
+        "category": "iot",
+        "status": "completed"
+      }
+    ],
+    
+    "education": [
+      {
+        "degree": "Grado en Tecnologías Interactivas",
+        "institution": "Universidad Politécnica de Valencia, Campus de Gandía",
+        "period": "2022 - Actualidad",
+        "status": "in-progress"
+      },
+      {
+        "degree": "Bootcamp de DevOps",
+        "institution": "Código Facilito",
+        "period": "2024 - 2025",
+        "status": "in-progress"
+      },
+      {
+        "degree": "Grado en Videojuegos y Experiencias Interactivas",
+        "institution": "Florida Universitaria",
+        "period": "2020 - 2022",
+        "status": "completed"
+      }
+    ],
+    
+    "achievements": [
+      {
+        "title": "Campeón Telefónica: Líderes Digitales Universitarios",
+        "date": "Abril 2025",
+        "description": "Desarrollo de Soft Skills, Hard Skills y Visión Empresarial",
+        "type": "competition"
+      },
+      {
+        "title": "Hackathon eMobility",
+        "date": "Septiembre 2023",
+        "description": "Solución tecnológica para la ciudad de Valencia",
+        "type": "hackathon"
+      },
+      {
+        "title": "Campus Salud Gandía",
+        "date": "Abril 2023",
+        "description": "Resolución de un problema en el campo de la Salud",
+        "type": "hackathon"
+      }
+    ],
+    
+    "skills": {
+      "technical": [
+        "Git", "GitHub", "Trello", "Docker", "Axure",
+        "Amazon Web Services", "Bash Scripting", "Figma",
+        "Unity", "DevOps", "CI/CD", "3DS Max", "Blender",
+        "Visual Studio Code", "NodeJS", "NumPy"
+      ],
+      "languages": {
+        "programming": ["Python", "JavaScript", "TypeScript", "C++", "C#", "Java", "PHP", "SQL", "Bash"],
+        "frameworks": ["ROS2", "NodeJS", "Unity", "React", "Next.js"],
+        "databases": ["SQL", "Firebase", "MariaDB", "PostgreSQL"]
+      },
+      "soft": [
+        "Trabajo en Equipo",
+        "Metodología SCRUM/CDIO",
+        "Liderazgo",
+        "Creatividad",
+        "Resolución de problemas",
+        "Resiliencia",
+        "Compromiso"
+      ],
+      "languages_spoken": [
+        { "language": "Español", "level": "Nativo" },
+        { "language": "Valenciano", "level": "Nativo" },
+        { "language": "Inglés Técnico", "level": "B2" },
+        { "language": "Francés", "level": "B1" }
+      ]
+    },
+    
+    "interests": [
+      "Robótica",
+      "Inteligencia Artificial",
+      "DevOps",
+      "Automatización",
+      "IoT",
+      "Cloud Computing",
+      "Backend Development",
+      "SCRUM Methodologies"
+    ],
+    
+    "current_focus": {
+      "learning": ["ROS2", "Python", "Cloud Computing", "AWS"],
+      "working_on": "AidGuide - Robotic guide for visually impaired individuals",
+      "looking_for": "Colaboración en nuevos proyectos con gente apasionada"
+    },
+    
+    "motto": "If the plan doesn't work, change the plan, but don't change the goal."
+  }

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Project } from '@/lib/types/portfolio';
-import { ExternalLink, Github, Star, GitFork, Calendar, Code2 } from 'lucide-react';
+import { ExternalLink, Github, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface EnhancedProjectCardProps {
@@ -13,55 +13,6 @@ interface EnhancedProjectCardProps {
 
 export default function EnhancedProjectCard({ project, index = 0 }: EnhancedProjectCardProps) {
   const { t } = useLanguage();
-
-  const categoryConfig: Record<string, { gradient: string; icon: string; bgColor: string }> = {
-    'ai-robotics': {
-      gradient: 'from-blue-500 via-cyan-500 to-blue-600',
-      icon: '🤖',
-      bgColor: 'bg-blue-500/10'
-    },
-    'iot': {
-      gradient: 'from-green-500 via-emerald-500 to-green-600',
-      icon: '📡',
-      bgColor: 'bg-green-500/10'
-    },
-    'web': {
-      gradient: 'from-orange-500 via-amber-500 to-orange-600',
-      icon: '🌐',
-      bgColor: 'bg-orange-500/10'
-    },
-    'tools': {
-      gradient: 'from-purple-500 via-violet-500 to-purple-600',
-      icon: '🛠️',
-      bgColor: 'bg-purple-500/10'
-    },
-    'saas': {
-      gradient: 'from-indigo-500 via-blue-500 to-indigo-600',
-      icon: '☁️',
-      bgColor: 'bg-indigo-500/10'
-    },
-    'academic': {
-      gradient: 'from-red-500 via-pink-500 to-red-600',
-      icon: '🎓',
-      bgColor: 'bg-red-500/10'
-    },
-  };
-
-  const config = categoryConfig[project.category] || {
-    gradient: 'from-gray-500 via-slate-500 to-gray-600',
-    icon: '📦',
-    bgColor: 'bg-gray-500/10'
-  };
-
-  const getLanguageColor = (color: string) => {
-    // Mejora de contraste para colores problemáticos como el amarillo
-    const colorMap: Record<string, string> = {
-      '#f1e05a': '#d4af37', // JavaScript yellow -> gold
-      '#e34c26': '#ff6b35', // HTML -> brighter orange
-      '#563d7c': '#7952b3', // CSS -> brighter purple
-    };
-    return colorMap[color] || color;
-  };
 
   return (
     <motion.div

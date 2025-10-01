@@ -3,8 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Project } from '@/lib/types/portfolio';
-import { cn } from '@/lib/utils/cn';
-import { ExternalLink, Github, Star, Calendar } from 'lucide-react';
+import { ExternalLink, Github, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ProjectCardProps {
@@ -14,56 +13,6 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const { t } = useLanguage();
-
-  const categoryConfig: Record<string, { gradient: string; accentColor: string }> = {
-    'ai-robotics': {
-      gradient: 'from-blue-500/10 to-transparent',
-      accentColor: 'bg-blue-500'
-    },
-    'iot': {
-      gradient: 'from-green-500/10 to-transparent',
-      accentColor: 'bg-green-500'
-    },
-    'games': {
-      gradient: 'from-purple-500/10 to-transparent',
-      accentColor: 'bg-purple-500'
-    },
-    'web': {
-      gradient: 'from-orange-500/10 to-transparent',
-      accentColor: 'bg-orange-500'
-    },
-    'mobile': {
-      gradient: 'from-pink-500/10 to-transparent',
-      accentColor: 'bg-pink-500'
-    },
-    'devops': {
-      gradient: 'from-gray-500/10 to-transparent',
-      accentColor: 'bg-gray-500'
-    },
-    'saas': {
-      gradient: 'from-indigo-500/10 to-transparent',
-      accentColor: 'bg-indigo-500'
-    },
-    'tools': {
-      gradient: 'from-yellow-500/10 to-transparent',
-      accentColor: 'bg-yellow-500'
-    },
-    'academic': {
-      gradient: 'from-red-500/10 to-transparent',
-      accentColor: 'bg-red-500'
-    },
-    'experimental': {
-      gradient: 'from-cyan-500/10 to-transparent',
-      accentColor: 'bg-cyan-500'
-    },
-    'other': {
-      gradient: 'from-gray-500/10 to-transparent',
-      accentColor: 'bg-gray-500'
-    },
-  };
-
-  const defaultConfig = categoryConfig.other;
-  const config = categoryConfig[project.category as keyof typeof categoryConfig] ?? defaultConfig;
 
   return (
     <motion.div

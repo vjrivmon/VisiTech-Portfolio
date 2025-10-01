@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from 'react';
 import EnhancedProjectCard from '@/components/projects/EnhancedProjectCard';
-import ProjectFilter from '@/components/projects/ProjectFilter';
 import { Project } from '@/lib/types/portfolio';
 
 interface FilteredProjectsPageProps {

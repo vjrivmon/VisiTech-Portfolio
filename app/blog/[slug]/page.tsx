@@ -53,7 +53,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Por ahora usamos español, más tarde podemos usar el contexto de idioma
   const locale = 'es';
   const title = locale === 'es' ? post.title.es : post.title.en;
-  const subtitle = locale === 'es' ? post.subtitle.es : post.subtitle.en;
+  const subtitle = locale === 'es' ? post.subtitle?.es : post.subtitle?.en;
   const content = locale === 'es' ? post.content.es : post.content.en;
 
   const formattedDate = new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'en-US', {

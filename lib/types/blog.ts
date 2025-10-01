@@ -5,7 +5,7 @@ export interface BlogPost {
     es: string;
     en: string;
   };
-  subtitle: {
+  subtitle?: {
     es: string;
     en: string;
   };

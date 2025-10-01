@@ -1,4 +1,8 @@
+'use client';
+
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { ArrowUpRight, MapPin, Briefcase } from 'lucide-react';
 
 const socialLinks = [
   {
@@ -30,102 +34,208 @@ const socialLinks = [
   },
 ];
 
-const footerLinks = [
-  {
-    title: 'Navigation',
-    links: [
-      { name: 'Home', href: '/' },
-      { name: 'Projects', href: '/projects' },
-      { name: 'About', href: '/about' },
-    ],
-  },
-  {
-    title: 'Categories',
-    links: [
-      { name: 'AI & Robotics', href: '/projects?category=ai-robotics' },
-      { name: 'IoT', href: '/projects?category=iot' },
-      { name: 'Web Development', href: '/projects?category=web' },
-      { name: 'Games', href: '/projects?category=games' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { name: 'GitHub', href: 'https://github.com/vjrivmon' },
-      { name: 'LinkedIn', href: 'https://www.linkedin.com/in/vicente-rivas-monferrer' },
-      { name: 'Resume', href: '/vicente-rivas-cv.pdf' },
-    ],
-  },
-];
-
 export default function Footer() {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
+  const quickLinks = [
+    { name: t.nav.home, href: '/', internal: true },
+    { name: t.nav.projects, href: '/projects', internal: true },
+    { name: t.nav.about, href: '/about', internal: true },
+    { name: t.footer.contact || 'Contact', href: '/contact', internal: true },
+  ];
+
+  const projectCategories = [
+    { name: t.categories['ai-robotics'], href: '/projects?category=ai-robotics', internal: true },
+    { name: t.categories.iot, href: '/projects?category=iot', internal: true },
+    { name: t.categories.web, href: '/projects?category=web', internal: true },
+    { name: t.categories.games, href: '/projects?category=games', internal: true },
+  ];
+
+  const resources = [
+    { name: 'GitHub', href: 'https://github.com/vjrivmon', internal: false },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/vicente-rivas-monferrer', internal: false },
+    { name: t.footer.resume, href: '/vicente-rivas-cv.pdf', internal: false },
+    { name: 'Blog', href: '/blog', internal: true },
+  ];
+
   return (
-    <footer className="border-t bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="md:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <span className="text-xl font-bold gradient-text">VR</span>
-              <span className="text-sm text-muted-foreground">
-                Vicente Rivas
-              </span>
+    <footer className="relative mt-auto" role="contentinfo">
+      {/* Gradient top border */}
+      <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+
+      <div className="bg-gradient-to-b from-background to-muted/10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Main footer content - More spacing */}
+          <div className="py-16 lg:py-20">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-16">
+
+              {/* Brand & Info Section - Pegado a la izquierda */}
+              <div className="lg:max-w-md">
+                <div className="space-y-8">
+                  {/* Logo - Larger and more prominent */}
+                  <Link href="/" className="inline-block group focus:outline-none focus:ring-2 focus:ring-primary rounded-lg">
+                    <div className="flex items-center space-x-4">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-primary/20 blur-xl rounded-lg" />
+                        <div className="relative bg-gradient-to-br from-primary to-primary/80 text-white font-bold text-2xl px-4 py-3 rounded-lg shadow-lg">
+                          VRM
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-xl">Vicente Rivas Monferrer</h3>
+                        <p className="text-sm text-muted-foreground mt-1">{t.footer.tagline}</p>
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* Info badges - Better spacing */}
+                  <div className="flex flex-wrap gap-4">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/30 px-3 py-2 rounded-md">
+                      <MapPin className="h-4 w-4 flex-shrink-0" />
+                      <span>Valencia, Spain</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/30 px-3 py-2 rounded-md">
+                      <Briefcase className="h-4 w-4 flex-shrink-0" />
+                      <span>Available for hire</span>
+                    </div>
+                  </div>
+
+                  {/* Quote - More prominent */}
+                  <blockquote className="border-l-3 border-primary/30 pl-5 py-2 italic text-sm text-muted-foreground leading-relaxed">
+                    {t.footer.quote}
+                  </blockquote>
+
+                  {/* Social links - Larger hit targets for accessibility */}
+                  <div className="flex gap-3">
+                    {socialLinks.map((social) => (
+                      <Link
+                        key={social.name}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 rounded-xl bg-muted/30 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary"
+                        aria-label={`Visit ${social.name} profile`}
+                      >
+                        {social.icon}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Links Grid - Pegado a la derecha */}
+              <div className="w-full lg:w-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-16 gap-y-10 lg:gap-x-24">
+                  {/* Quick Links */}
+                  <nav aria-labelledby="footer-nav">
+                    <h4 id="footer-nav" className="font-semibold text-base uppercase tracking-wider mb-6 text-foreground">
+                      {t.footer.navigation}
+                    </h4>
+                    <ul className="space-y-4">
+                      {quickLinks.map((link) => (
+                        <li key={link.name}>
+                          <Link
+                            href={link.href}
+                            className="group inline-flex items-center gap-2 text-base text-muted-foreground hover:text-primary transition-colors py-1 focus:outline-none focus:text-primary"
+                          >
+                            <span className="group-hover:translate-x-1 transition-transform">
+                              {link.name}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+
+                  {/* Categories */}
+                  <nav aria-labelledby="footer-categories">
+                    <h4 id="footer-categories" className="font-semibold text-base uppercase tracking-wider mb-6 text-foreground">
+                      {t.footer.categories}
+                    </h4>
+                    <ul className="space-y-4">
+                      {projectCategories.map((category) => (
+                        <li key={category.name}>
+                          <Link
+                            href={category.href}
+                            className="group inline-flex items-center gap-2 text-base text-muted-foreground hover:text-primary transition-colors py-1 focus:outline-none focus:text-primary"
+                          >
+                            <span className="group-hover:translate-x-1 transition-transform">
+                              {category.name}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+
+                  {/* Resources */}
+                  <nav aria-labelledby="footer-resources">
+                    <h4 id="footer-resources" className="font-semibold text-base uppercase tracking-wider mb-6 text-foreground">
+                      {t.footer.resources}
+                    </h4>
+                    <ul className="space-y-4">
+                      {resources.map((resource) => (
+                        <li key={resource.name}>
+                          <Link
+                            href={resource.href}
+                            className="group inline-flex items-center gap-2 text-base text-muted-foreground hover:text-primary transition-colors py-1 focus:outline-none focus:text-primary"
+                            target={!resource.internal ? '_blank' : undefined}
+                            rel={!resource.internal ? 'noopener noreferrer' : undefined}
+                          >
+                            <span className="group-hover:translate-x-1 transition-transform">
+                              {resource.name}
+                            </span>
+                            {!resource.internal && (
+                              <ArrowUpRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            )}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </div>
+              </div>
             </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Backend Developer, Software Developer & Scrum Master
-            </p>
-            <p className="text-sm text-muted-foreground italic">
-              &quot;If the plan doesn&apos;t work, change the plan, but don&apos;t change the goal.&quot;
-            </p>
           </div>
 
-          {/* Links */}
-          {footerLinks.map((section) => (
-            <div key={section.title}>
-              <h3 className="font-semibold mb-3">{section.title}</h3>
-              <ul className="space-y-2">
-                {section.links.map((link) => (
-                  <li key={link.name}>
+          {/* Bottom Bar - More padding */}
+          <div className="border-t border-border/40 py-8">
+            <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start gap-6">
+              <p className="text-sm text-muted-foreground">
+                © {currentYear} Vicente Rivas Monferrer. {t.footer.rights}
+              </p>
+
+              {/* Legal links with better spacing */}
+              <nav aria-label="Legal links">
+                <ul className="flex items-center gap-8 text-sm">
+                  <li>
                     <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      target={link.href.startsWith('http') ? '_blank' : undefined}
-                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      href="/privacy"
+                      className="text-muted-foreground hover:text-primary transition-colors py-2 px-1 focus:outline-none focus:text-primary"
                     >
-                      {link.name}
+                      Privacy Policy
                     </Link>
                   </li>
-                ))}
-              </ul>
+                  <li>
+                    <Link
+                      href="/terms"
+                      className="text-muted-foreground hover:text-primary transition-colors py-2 px-1 focus:outline-none focus:text-primary"
+                    >
+                      Terms of Service
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/sitemap.xml"
+                      className="text-muted-foreground hover:text-primary transition-colors py-2 px-1 focus:outline-none focus:text-primary"
+                    >
+                      Sitemap
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
             </div>
-          ))}
-        </div>
-
-        {/* Bottom section */}
-        <div className="mt-12 pt-8 border-t">
-          <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            {/* Social links */}
-            <div className="flex space-x-6">
-              {socialLinks.map((social) => (
-                <Link
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </Link>
-              ))}
-            </div>
-
-            {/* Copyright */}
-            <p className="text-sm text-muted-foreground">
-              © {currentYear} Vicente Rivas Monferrer. All rights reserved.
-            </p>
           </div>
         </div>
       </div>

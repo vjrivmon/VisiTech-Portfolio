@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/vicente/RoadToDevOps/visitech_portfolio/logs/.05f00ada09c6e3a250cf34a481c8cfb8d3958d0e-audit.json",
+    "files": [
+        {
+            "date": 1759326753610,
+            "name": "/home/vicente/RoadToDevOps/visitech_portfolio/logs/mcp-puppeteer-2025-10-01.log",
+            "hash": "a9921c08526ee41d5702301ea2937bd905b0ca4f4b0548d03c5c8743993dcad3"
+        }
+    ],
+    "hashType": "sha256"
+}

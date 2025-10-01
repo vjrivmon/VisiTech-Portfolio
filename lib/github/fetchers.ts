@@ -28,6 +28,7 @@ export async function getGitHubRepos(): Promise<Project[]> {
     return projects;
   } catch (error) {
     console.error('Error fetching GitHub repos:', error);
+    // Return empty array if there's an error
     return [];
   }
 }

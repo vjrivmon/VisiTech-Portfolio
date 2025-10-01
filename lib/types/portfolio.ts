@@ -102,16 +102,20 @@ export interface ProjectMetadata {
   lastFetch: Date;
 }
 
-// Featured projects configuration
+// Featured projects configuration - Updated list (use exact GitHub repo names)
 export const FEATURED_PROJECTS = [
-  'aidguide_04',      // Active robotics project
-  'neurospot',        // AI/Health TDAH detection
-  'aura-backend',     // Voice-guided app for blind
-  'vimyp',            // Environmental project
-  'poligames',        // Game development
-  'ecocity',          // IoT smart city
-  'osyris-web',       // Recent web project
-  'sustainability-web' // Recent React project
+  'Osyris-Web',                           // Osyris Web
+  'frontend_teamlens',                    // Teamlens Front
+  'backend_teamlens',                     // Teamlens Back
+  'pdf_reader',                           // PDF Reader
+  'Youtube-Playlist-Extractor',           // YouTube Playlist Extractor
+  'aura-backend',                         // Aura Backend
+  'aidguide_04',                          // AidGuide_04
+  'Neuro_Spot',                          // NeuroSpot
+  'DevXphere',                            // DevXphere
+  'AIGenTI',                              // AIGenTI
+  'Codigos_Generales_PBIO_Sprint0',      // Códigos Generales PBIO Sprint0
+  'PoliGames'                            // PoliGames
 ];
 
 // Skills and Technologies

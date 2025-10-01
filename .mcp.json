@@ -1,218 +1,153 @@
 {
-    "mcpServers": {
-      "shadcn-ui": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-shadcn"],
-        "description": "shadcn/ui component installer and manager",
-        "capabilities": [
-          "component_installation",
-          "ui_generation",
-          "radix_ui_integration"
-        ],
-        "usage": {
-          "install": "npx shadcn-ui@latest add [component]",
-          "init": "npx shadcn-ui@latest init",
-          "available_components": [
-            "button", "card", "badge", "separator", "avatar",
-            "tabs", "dialog", "tooltip", "accordion", "form",
-            "input", "textarea", "label", "navigation-menu",
-            "dropdown-menu", "skeleton", "alert", "select",
-            "sheet", "table", "toast", "scroll-area"
-          ]
-        },
-        "config": {
-          "style": "default",
-          "base_color": "slate",
-          "css_variables": true
-        }
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
       },
-      
-      "playwright": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-playwright"],
-        "description": "Browser automation and testing",
-        "capabilities": [
-          "screenshot_capture",
-          "page_navigation",
-          "interaction_testing",
-          "accessibility_audit",
-          "performance_metrics"
-        ],
-        "usage": {
-          "screenshots": "Capture full page and component screenshots",
-          "testing": "Test user interactions and flows",
-          "audit": "Run accessibility and performance audits"
-        },
-        "config": {
-          "browsers": ["chromium", "firefox", "webkit"],
-          "viewport": {
-            "mobile": { "width": 375, "height": 667 },
-            "tablet": { "width": 768, "height": 1024 },
-            "desktop": { "width": 1920, "height": 1080 }
-          }
-        }
-      },
-      
-      "github": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-github"],
-        "description": "GitHub API integration",
-        "capabilities": [
-          "repository_management",
-          "fetch_repositories",
-          "fetch_readme",
-          "fetch_commits",
-          "webhook_management"
-        ],
-        "usage": {
-          "list_repos": "Get all repositories for user",
-          "get_repo": "Fetch single repository details",
-          "get_readme": "Fetch and parse README",
-          "get_languages": "Get tech stack information"
-        },
-        "config": {
-          "auth": {
-            "token": "${GITHUB_TOKEN}",
-            "username": "vjrivmon"
-          },
-          "api_url": "https://api.github.com",
-          "rate_limit": {
-            "requests_per_hour": 5000,
-            "check_before_request": true
-          }
-        }
-      },
-      
-      "vercel": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-vercel"],
-        "description": "Vercel deployment and management",
-        "capabilities": [
-          "deployment_management",
-          "environment_variables",
-          "deploy_hooks",
-          "domain_management",
-          "analytics"
-        ],
-        "usage": {
-          "deploy": "Trigger deployment",
-          "env_vars": "Manage environment variables",
-          "domains": "Configure custom domains",
-          "logs": "View deployment logs"
-        },
-        "config": {
-          "auth": {
-            "token": "${VERCEL_TOKEN}"
-          },
-          "team": null,
-          "project": "visitech-portfolio"
-        }
-      },
-      
-      "n8n": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-n8n"],
-        "description": "n8n workflow automation",
-        "capabilities": [
-          "workflow_creation",
-          "webhook_management",
-          "node_configuration",
-          "execution_monitoring"
-        ],
-        "usage": {
-          "create_workflow": "Create new automation workflow",
-          "add_node": "Add nodes to workflow",
-          "test_workflow": "Test workflow execution",
-          "monitor": "Monitor workflow health"
-        },
-        "config": {
-          "api_url": "${N8N_API_URL}",
-          "api_key": "${N8N_API_KEY}",
-          "webhook_url": "${N8N_WEBHOOK_URL}"
-        }
-      },
-      
-      "filesystem": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-filesystem"],
-        "description": "File system operations",
-        "capabilities": [
-          "read_files",
-          "write_files",
-          "create_directories",
-          "list_directory",
-          "search_files"
-        ],
-        "usage": {
-          "read": "Read file contents",
-          "write": "Write to files",
-          "list": "List directory contents",
-          "search": "Search for files"
-        },
-        "config": {
-          "allowed_directories": [
-            "${PROJECT_ROOT}",
-            "${PROJECT_ROOT}/.claude",
-            "${PROJECT_ROOT}/app",
-            "${PROJECT_ROOT}/components",
-            "${PROJECT_ROOT}/lib"
-          ]
-        }
-      },
-      
-      "markdown": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-markdown"],
-        "description": "Markdown parsing and rendering",
-        "capabilities": [
-          "parse_markdown",
-          "render_html",
-          "extract_metadata",
-          "table_of_contents"
-        ],
-        "usage": {
-          "parse": "Parse README files",
-          "render": "Convert markdown to HTML",
-          "extract": "Extract frontmatter"
-        }
-      },
-      
-      "docker": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-docker"],
-        "description": "Docker container management",
-        "capabilities": [
-          "container_management",
-          "image_building",
-          "compose_management",
-          "network_management"
-        ],
-        "usage": {
-          "build": "Build Docker images",
-          "run": "Run containers",
-          "compose": "Manage docker-compose services"
-        },
-        "config": {
-          "socket_path": "/var/run/docker.sock"
-        }
+      "description": "GitHub API integration - Fetch repos, READMEs, commits, stats",
+      "capabilities": [
+        "repository_management",
+        "fetch_repositories",
+        "fetch_readme",
+        "fetch_commits",
+        "webhook_management"
+      ],
+      "usage": {
+        "list_repos": "Get all repositories for user vjrivmon",
+        "get_repo": "Fetch single repository details",
+        "get_readme": "Fetch and parse README files",
+        "get_languages": "Get tech stack information"
       }
     },
     
-    "global_config": {
-      "log_level": "info",
-      "timeout": 30000,
-      "retry_attempts": 3,
-      "cache_enabled": true,
-      "cache_ttl": 3600
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/vicente/RoadToDevOps/visitech_portfolio"
+      ],
+      "description": "File system operations - Read/write files, list directories",
+      "capabilities": [
+        "read_files",
+        "write_files",
+        "create_directories",
+        "list_directory",
+        "search_files"
+      ],
+      "usage": {
+        "read": "Read file contents",
+        "write": "Write to files",
+        "list": "List directory contents",
+        "search": "Search for files"
+      }
     },
     
-    "environment_variables_required": [
-      "GITHUB_TOKEN",
-      "GITHUB_USERNAME",
-      "VERCEL_TOKEN",
-      "N8N_API_URL",
-      "N8N_API_KEY",
-      "N8N_WEBHOOK_URL",
-      "REVALIDATE_SECRET"
-    ]
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "description": "Sequential thinking for complex problem solving",
+      "capabilities": [
+        "step_by_step_reasoning",
+        "problem_analysis",
+        "solution_planning"
+      ],
+      "usage": {
+        "think": "Break down complex problems into steps"
+      }
+    },
+
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@executeautomation/playwright-mcp-server"],
+      "description": "Playwright browser automation for testing and scraping",
+      "capabilities": [
+        "browser_automation",
+        "web_testing",
+        "screenshot_capture",
+        "page_interaction"
+      ],
+      "usage": {
+        "automate": "Automate browser interactions",
+        "test": "Run automated tests",
+        "screenshot": "Capture screenshots"
+      }
+    },
+
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/react-mcp"],
+      "description": "Chakra UI components and utilities",
+      "capabilities": [
+        "ui_components",
+        "theme_management",
+        "component_generation"
+      ],
+      "usage": {
+        "components": "Access Chakra UI component library"
+      }
+    },
+
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "puppeteer-mcp-server"],
+      "description": "Puppeteer browser automation and control",
+      "capabilities": [
+        "web_automation",
+        "screenshot_capture",
+        "page_interaction",
+        "pdf_generation"
+      ],
+      "usage": {
+        "automate": "Automate web interactions",
+        "screenshot": "Capture screenshots",
+        "pdf": "Generate PDFs from web pages"
+      }
+    },
+    
+    "reactbits": {
+      "command": "npx",
+      "args": ["-y", "reactbits-dev-mcp-server"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "ReactBits.dev components - 135+ animated React components",
+      "capabilities": [
+        "component_discovery",
+        "animated_components",
+        "ui_components",
+        "demo_generation"
+      ],
+      "usage": {
+        "list_components": "Browse ReactBits component library",
+        "get_component": "Get source code for specific components",
+        "search_components": "Search components by name or description",
+        "get_demo": "Get usage examples and demo code"
+      }
+    },
+
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"],
+      "description": "shadcn-ui components via MCP",
+      "capabilities": [
+        "component_browsing",
+        "component_installation",
+        "registry_management"
+      ],
+      "usage": {
+        "browse": "Browse available shadcn components",
+        "install": "Install shadcn components"
+      }
+    }
+  },
+  
+  "project_info": {
+    "name": "visitech_portfolio",
+    "developer": "Vicente Rivas Monferrer (@vjrivmon)",
+    "stack": "Next.js 14, TypeScript, Tailwind CSS",
+    "purpose": "Portfolio profesional con integración GitHub API"
   }
+}

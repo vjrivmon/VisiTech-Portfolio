@@ -1,53 +1,107 @@
+"use client";
+
+import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Mail, Linkedin, Sparkles } from 'lucide-react';
+
 export default function CallToAction() {
+  const { locale } = useLanguage();
+
   return (
-    <section className="section">
-      <div className="section-container">
-        <div className="max-w-4xl mx-auto text-center">
+    <section className="section relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+
+      <div className="section-container relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          {/* Icon with animation */}
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.5, type: "spring" }}
+            viewport={{ once: true }}
+            className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6"
+          >
+            <Sparkles className="h-8 w-8 text-primary" />
+          </motion.div>
+
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-            Let&apos;s Work Together
+            {locale === 'es' ? 'Trabajemos Juntos' : "Let's Work Together"}
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            I&apos;m always open to discussing new projects, creative ideas, or opportunities
-            to be part of your visions. Feel free to reach out!
+            {locale === 'es'
+              ? 'Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para formar parte de tus visiones. ¡No dudes en contactarme!'
+              : "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out!"
+            }
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:vicenterivasmonferrer12@gmail.com"
-              className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <motion.a
+              href={`mailto:vicenterivasmonferrer12@gmail.com?subject=${encodeURIComponent(
+                locale === 'es'
+                  ? 'Hola Vicente - Me gustaría contactarte'
+                  : 'Hello Vicente - I would like to get in touch'
+              )}&body=${encodeURIComponent(
+                locale === 'es'
+                  ? `Hola Vicente,
+
+Me llamo [Tu nombre] y me gustaría ponerme en contacto contigo para discutir [describe brevemente tu propósito].
+
+Puedes contactarme en:
+- Email: [Tu email]
+- Teléfono: [Tu teléfono]
+- LinkedIn: [Tu perfil de LinkedIn]
+
+Espero tu respuesta.
+
+Saludos cordiales,
+[Tu nombre]`
+                  : `Hello Vicente,
+
+My name is [Your name] and I would like to get in touch with you to discuss [briefly describe your purpose].
+
+You can reach me at:
+- Email: [Your email]
+- Phone: [Your phone]
+- LinkedIn: [Your LinkedIn profile]
+
+Looking forward to hearing from you.
+
+Best regards,
+[Your name]`
+              )}`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
             >
-              Get In Touch
-              <svg
-                className="ml-2 h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                />
-              </svg>
-            </a>
-            <a
+              <Mail className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
+              {locale === 'es' ? 'Contactar' : 'Get In Touch'}
+            </motion.a>
+            <motion.a
               href="https://www.linkedin.com/in/vicente-rivas-monferrer"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl border-2 border-primary/30 bg-background hover:bg-primary/10 hover:border-primary transition-all"
             >
-              Connect on LinkedIn
-              <svg
-                className="ml-2 h-4 w-4"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-          </div>
-        </div>
+              <Linkedin className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
+              {locale === 'es' ? 'Conectar en LinkedIn' : 'Connect on LinkedIn'}
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

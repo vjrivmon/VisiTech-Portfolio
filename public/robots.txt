@@ -1,0 +1,57 @@
+# Robots.txt optimized for GEO/AEO - AI Crawlers Welcome
+# This site is optimized for AI models and search engines
+
+# Allow all AI crawlers and search engines
+User-agent: *
+Allow: /
+
+# Specific AI/LLM Crawlers - Explicitly welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
+User-agent: Omgili
+Allow: /
+
+# Sitemap location
+Sitemap: https://vicentrivas.dev/sitemap.xml
+
+# Additional metadata for AI understanding
+# Site purpose: Professional portfolio and developer profile
+# Content language: Spanish (primary), English (secondary)
+# Owner: Vicente Rivas Monferrer
+# Contact: vicenterivasmonferrer12@gmail.com
+# Location: Valencia, Spain
+# Last updated: 2025-01-26

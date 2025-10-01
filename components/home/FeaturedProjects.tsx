@@ -1,32 +1,54 @@
-import { getFeaturedProjects } from '@/lib/github/fetchers';
+'use client';
+
+import { useState, useEffect } from 'react';
 import ProjectCard from '@/components/projects/ProjectCard';
 import Link from 'next/link';
+import { Project } from '@/lib/types/portfolio';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-export default async function FeaturedProjects() {
-  const projects = await getFeaturedProjects();
+export default function FeaturedProjects() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { t } = useLanguage();
+
+  useEffect(() => {
+    fetch('/api/projects?featured=true')
+      .then(res => res.json())
+      .then(data => {
+        setProjects(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <section className="section bg-muted/30">
       <div className="section-container">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Featured Projects
+            {t.projects.title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore my latest work in AI, Robotics, IoT, and Web Development.
-            Each project showcases different skills and technologies.
+            {t.projects.subtitle}
           </p>
         </div>
 
-        {projects.length > 0 ? (
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            <p className="mt-4 text-muted-foreground">{t.common.loading}</p>
+          </div>
+        ) : projects.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+            {projects.slice(0, 6).map((project, idx) => (
+              <ProjectCard key={project.id} project={project} index={idx} />
             ))}
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">Loading projects...</p>
+            <p className="text-muted-foreground">{t.projects.noResults}</p>
           </div>
         )}
 
@@ -35,7 +57,7 @@ export default async function FeaturedProjects() {
             href="/projects"
             className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
           >
-            View All Projects
+            {t.projects.viewAll}
             <svg
               className="ml-2 h-4 w-4"
               fill="none"

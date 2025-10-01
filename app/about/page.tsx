@@ -1,200 +1,251 @@
-export const metadata = {
-  title: 'About',
-  description: 'Learn more about Vicente Rivas Monferrer - Backend Developer, Software Developer & Scrum Master',
-};
+"use client";
+
+import { motion } from 'framer-motion';
+import { GradientHeading } from '@/components/react-bits/gradient-heading';
+import { AnimatedCard } from '@/components/react-bits/animated-card';
+import { FloatingBadge } from '@/components/react-bits/floating-badge';
+import { Code2, Briefcase, Award, Globe2, Download, Calendar } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import Timeline from '@/components/about/Timeline';
 
 export default function AboutPage() {
-  const skills = {
-    'Programming Languages': [
-      { name: 'Python', level: 90 },
-      { name: 'JavaScript', level: 85 },
-      { name: 'TypeScript', level: 80 },
-      { name: 'C++', level: 75 },
-      { name: 'Java', level: 70 },
-      { name: 'PHP', level: 65 },
-    ],
-    'Frameworks & Libraries': [
-      { name: 'React', level: 80 },
-      { name: 'Next.js', level: 75 },
-      { name: 'Node.js', level: 85 },
-      { name: 'ROS2', level: 70 },
-      { name: 'Unity', level: 65 },
-    ],
-    'DevOps & Tools': [
-      { name: 'Git', level: 90 },
-      { name: 'Docker', level: 75 },
-      { name: 'AWS', level: 65 },
-      { name: 'CI/CD', level: 70 },
-      { name: 'Linux', level: 80 },
-    ],
-  };
+  const { t, locale } = useLanguage();
+  const skills = [
+    { name: 'Python', level: 90, color: '#3776AB' },
+    { name: 'TypeScript', level: 85, color: '#3178C6' },
+    { name: 'React', level: 80, color: '#61DAFB' },
+    { name: 'Next.js', level: 75, color: '#000000' },
+    { name: 'Node.js', level: 85, color: '#339933' },
+    { name: 'Docker', level: 75, color: '#2496ED' },
+    { name: 'ROS2', level: 70, color: '#22314E' },
+    { name: 'AWS', level: 65, color: '#FF9900' },
+  ];
 
   const education = [
     {
-      degree: 'Grado en Tecnologías Interactivas',
+      degree: locale === 'es' ? 'Grado en Tecnologías Interactivas' : 'Interactive Technologies Degree',
       institution: 'UPV Campus de Gandía',
-      period: '2022 - Present',
+      period: locale === 'es' ? '2022 - Presente' : '2022 - Present',
       status: 'In Progress',
+      icon: '🎓'
     },
     {
-      degree: 'Bootcamp de DevOps',
+      degree: 'Bootcamp DevOps',
       institution: 'Código Facilito',
       period: '2024 - 2025',
       status: 'In Progress',
+      icon: '⚙️'
     },
     {
-      degree: 'Grado en Videojuegos y Experiencias Interactivas',
+      degree: locale === 'es' ? 'Grado en Videojuegos' : 'Video Game Development Degree',
       institution: 'Florida Universitaria',
       period: '2020 - 2022',
       status: 'Completed',
+      icon: '🎮'
     },
   ];
 
   const achievements = [
     {
-      title: 'Campeón Telefónica: Líderes Digitales Universitarios',
-      date: 'April 2025',
-      description: 'First place in the university digital leaders competition',
+      title: locale === 'es' ? 'Campeón Telefónica' : 'Telefónica Champion',
+      subtitle: locale === 'es' ? 'Líderes Digitales Universitarios' : 'University Digital Leaders',
+      date: locale === 'es' ? 'Abril 2025' : 'April 2025',
+      icon: '🏆',
+      color: '#FFD700'
     },
     {
-      title: 'Hackathon eMobility Valencia',
-      date: 'September 2023',
-      description: 'Developed innovative solutions for city mobility challenges',
+      title: 'Hackathon eMobility',
+      subtitle: locale === 'es' ? 'Soluciones de movilidad urbana' : 'Urban mobility solutions',
+      date: locale === 'es' ? 'Sept 2023' : 'Sept 2023',
+      icon: '🚗',
+      color: '#4CAF50'
     },
     {
-      title: 'Campus Salud Gandía',
-      date: 'April 2023',
-      description: 'Created healthcare solutions in a competitive environment',
+      title: locale === 'es' ? 'Campus Salud Gandía' : 'Gandía Health Campus',
+      subtitle: locale === 'es' ? 'Innovación en salud digital' : 'Digital health innovation',
+      date: locale === 'es' ? 'Abril 2023' : 'April 2023',
+      icon: '⚕️',
+      color: '#2196F3'
     },
+  ];
+
+  const languages = [
+    { name: locale === 'es' ? 'Español' : 'Spanish', level: t.about.native, flag: '🇪🇸' },
+    { name: locale === 'es' ? 'Valenciano' : 'Valencian', level: t.about.native, flag: '🇪🇸' },
+    { name: locale === 'es' ? 'Inglés' : 'English', level: 'B2', flag: '🇬🇧' },
+    { name: locale === 'es' ? 'Francés' : 'French', level: 'B1', flag: '🇫🇷' },
   ];
 
   return (
     <div className="min-h-screen">
       <section className="section">
-        <div className="section-container">
+        <div className="section-container max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-              About Me
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Passionate about technology and innovation, specialized in AI, Robotics, IoT, and DevOps.
-              Always learning, always building.
-            </p>
+          <div className="text-center mb-16">
+            <GradientHeading as="h1" className="text-5xl sm:text-6xl mb-6">
+              {t.about.title}
+            </GradientHeading>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            >
+              {t.about.subtitle}
+            </motion.p>
           </div>
 
-          {/* Bio Section */}
-          <div className="max-w-4xl mx-auto mb-16">
-            <div className="prose prose-lg dark:prose-invert mx-auto">
-              <p>
-                Soy un joven estudiante de último año que me apasiona el mundo de las tecnologías software.
-                Me adapto a cualquier entorno de desarrollo y soy capaz de sacar la mejor versión de mi
-                colaborando y liderando un equipo de trabajo.
+          {/* Quick Bio */}
+          <AnimatedCard className="mb-16" gradient>
+            <div className="p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <Briefcase className="h-6 w-6 text-primary" />
+                <h2 className="text-2xl font-bold">{t.about.inSummary}</h2>
+              </div>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {t.about.summary.split('IA, Robótica con ROS2, IoT')[0]}
+                <strong className="text-foreground">
+                  {locale === 'es' ? 'IA, Robótica con ROS2, IoT' : 'AI, Robotics with ROS2, IoT'}
+                </strong>
+                {t.about.summary.split('IoT')[1]?.split('AidGuide')[0]}
+                <strong className="text-foreground">AidGuide</strong>
+                {t.about.summary.split('AidGuide')[1]}
               </p>
-              <p>
-                Currently pursuing my degree in Interactive Technologies at UPV while working on exciting
-                projects like AidGuide, a robotic guide system for visually impaired individuals. My journey
-                spans from game development with Unity to building IoT solutions with Arduino and Raspberry Pi,
-                and now focusing on AI, robotics with ROS2, and modern web development.
-              </p>
-              <p>
-                As a Scrum Master and team leader in multiple projects, I&apos;ve learned the importance of
-                effective communication, agile methodologies, and the power of collaboration in achieving
-                exceptional results.
-              </p>
+            </div>
+          </AnimatedCard>
+
+          {/* Skills */}
+          <div className="mb-16">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <Code2 className="h-6 w-6 text-primary" />
+              <h2 className="text-3xl font-bold text-center">{t.about.techStack}</h2>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <FloatingBadge color={skill.color} delay={index * 0.05}>
+                    <span className="font-bold">{skill.name}</span>
+                    <span className="ml-2 opacity-70">{skill.level}%</span>
+                  </FloatingBadge>
+                </motion.div>
+              ))}
             </div>
           </div>
 
-          {/* Skills Section */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 text-center">Technical Skills</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {Object.entries(skills).map(([category, items]) => (
-                <div key={category} className="space-y-4">
-                  <h3 className="text-lg font-semibold mb-4">{category}</h3>
-                  {items.map((skill) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-sm font-medium">{skill.name}</span>
-                        <span className="text-sm text-muted-foreground">{skill.level}%</span>
+          {/* Education & Achievements in 2 columns */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {/* Education */}
+            <div>
+              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <span className="text-3xl">🎓</span>
+                {t.about.training}
+              </h2>
+              <div className="space-y-4">
+                {education.map((edu, index) => (
+                  <AnimatedCard key={index} delay={index * 0.1}>
+                    <div className="p-5">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl">{edu.icon}</span>
+                          <h3 className="font-bold text-sm">{edu.degree}</h3>
+                        </div>
+                        <span className={`text-xs px-3 py-1 rounded-full font-semibold ${
+                          edu.status === 'Completed'
+                            ? 'bg-green-500/20 text-green-600'
+                            : 'bg-blue-500/20 text-blue-600'
+                        }`}>
+                          {edu.status === 'Completed' ? t.about.completed : t.about.inProgress}
+                        </span>
                       </div>
-                      <div className="w-full bg-muted rounded-full h-2">
-                        <div
-                          className="bg-primary h-2 rounded-full transition-all duration-500"
-                          style={{ width: `${skill.level}%` }}
-                        />
+                      <p className="text-sm text-muted-foreground">{edu.institution}</p>
+                      <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        {edu.period}
+                      </p>
+                    </div>
+                  </AnimatedCard>
+                ))}
+              </div>
+            </div>
+
+            {/* Achievements */}
+            <div>
+              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <Award className="h-6 w-6 text-primary" />
+                {t.about.achievements}
+              </h2>
+              <div className="space-y-4">
+                {achievements.map((achievement, index) => (
+                  <AnimatedCard key={index} delay={index * 0.1}>
+                    <div className="p-5">
+                      <div className="flex items-start gap-3 mb-2">
+                        <motion.span
+                          className="text-3xl"
+                          animate={{ rotate: [0, 10, -10, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                        >
+                          {achievement.icon}
+                        </motion.span>
+                        <div className="flex-1">
+                          <h3 className="font-bold">{achievement.title}</h3>
+                          <p className="text-sm text-muted-foreground">{achievement.subtitle}</p>
+                          <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            {achievement.date}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  ))}
-                </div>
-              ))}
+                  </AnimatedCard>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Education Section */}
+          {/* Timeline Section */}
           <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 text-center">Education</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {education.map((edu, index) => (
-                <div key={index} className="p-6 rounded-lg border bg-card">
-                  <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold">{edu.degree}</h3>
-                    <span className={`text-xs px-2 py-1 rounded-full ${
-                      edu.status === 'Completed'
-                        ? 'bg-green-500/10 text-green-500'
-                        : 'bg-blue-500/10 text-blue-500'
-                    }`}>
-                      {edu.status}
-                    </span>
+            <Timeline />
+          </div>
+
+          {/* Languages */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-bold mb-6 text-center flex items-center justify-center gap-2">
+              <Globe2 className="h-6 w-6 text-primary" />
+              {t.about.languages}
+            </h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              {languages.map((lang, index) => (
+                <AnimatedCard key={index} delay={index * 0.1} className="min-w-[140px]">
+                  <div className="p-4 text-center">
+                    <h3 className="font-bold">{lang.name}</h3>
+                    <p className="text-sm text-primary font-semibold">{lang.level}</p>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-1">{edu.institution}</p>
-                  <p className="text-sm text-muted-foreground">{edu.period}</p>
-                </div>
+                </AnimatedCard>
               ))}
             </div>
           </div>
 
-          {/* Achievements Section */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 text-center">Achievements</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {achievements.map((achievement, index) => (
-                <div key={index} className="p-6 rounded-lg border bg-card">
-                  <div className="flex items-center mb-3">
-                    <svg className="h-6 w-6 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                    <span className="text-sm text-muted-foreground">{achievement.date}</span>
-                  </div>
-                  <h3 className="font-semibold mb-2">{achievement.title}</h3>
-                  <p className="text-sm text-muted-foreground">{achievement.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Languages Section */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 text-center">Languages</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-              <div className="text-center p-4 rounded-lg border bg-card">
-                <h3 className="font-semibold">Español</h3>
-                <p className="text-sm text-muted-foreground">Native</p>
-              </div>
-              <div className="text-center p-4 rounded-lg border bg-card">
-                <h3 className="font-semibold">Valenciano</h3>
-                <p className="text-sm text-muted-foreground">Native</p>
-              </div>
-              <div className="text-center p-4 rounded-lg border bg-card">
-                <h3 className="font-semibold">English</h3>
-                <p className="text-sm text-muted-foreground">B2</p>
-              </div>
-              <div className="text-center p-4 rounded-lg border bg-card">
-                <h3 className="font-semibold">Français</h3>
-                <p className="text-sm text-muted-foreground">B1</p>
-              </div>
-            </div>
-          </div>
+          {/* CTA - Download CV */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="text-center"
+          >
+            <a
+              href="/cv/Vicente_Rivas_CV.pdf"
+              download
+              className="inline-flex items-center gap-3 px-8 py-4 text-lg font-bold rounded-2xl bg-gradient-to-r from-primary to-accent text-white hover:shadow-2xl hover:scale-105 transition-all"
+            >
+              <Download className="h-5 w-5" />
+              {t.about.downloadFullCV}
+            </a>
+          </motion.div>
         </div>
       </section>
     </div>

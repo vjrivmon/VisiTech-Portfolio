@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Project } from '@/lib/types/portfolio';
-import { cn } from '@/lib/utils';
 import { ExternalLink, Github, Star, GitFork, Calendar, Code2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
